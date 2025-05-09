@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>RO Plant Maintenance Checksheet</title>
+</head>
+
+<body>
+    <header>
+        <div>
+            <div class="header-title">RO Plant Maintenance Checksheet</div>
+            <div class="header-meta">
+                Document Number: <input type="text" name="doc_no" placeholder="Enter Doc No." class="header-input"> | 
+                Rev Number: <input type="text" name="rev_no" placeholder="Enter Rev No." class="header-input"> | 
+                Rev Date: <input type="date" name="rev_date" class="header-input">
+            </div>
+        </div>
+        <div>
+            <button id="export-btn" class="view-toggle-btn">Export to Excel</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="filter-section">
+            <div class="filter-title">Filter by Frequency:</div>
+            <div class="filter-options">
+                <div class="filter-option active" data-filter="all">All</div>
+                <div class="filter-option" data-filter="per-shift">Per Shift</div>
+                <div class="filter-option" data-filter="daily">Daily</div>
+                <div class="filter-option" data-filter="weekly">Weekly</div>
+                <div class="filter-option" data-filter="monthly">Monthly</div>
+                <div class="filter-option" data-filter="quarterly">Quarterly</div>
+                <div class="filter-option" data-filter="half-yearly">Half Yearly</div>
+                <div class="filter-option" data-filter="yearly">Yearly</div>
+            </div>
+        </div>
+
+        <div class="view-toggle">
+            <button class="view-toggle-btn active" data-view="list">List View</button>
+            <button class="view-toggle-btn" data-view="calendar">Calendar View</button>
+        </div>
+
+        <form id="checksheet-form">
+            <div id="list-view" class="task-container">
+                <table id="tasks-table">
+                    <thead>
+                        <tr>
+                            <th>Activity to be performed</th>
+                            <th>Tool/Method of inspection</th>
+                            <th>Frequency</th>
+                            <th>Due Date</th>
+                            <th>Done Date</th>
+                            <th>Responsibilities</th>
+                            <th>Status</th>
+                            <th>Observation</th>
+                            <th>Action Taken</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-frequency="monthly">
+                            <td>Cartridge 20" x 4.5"/20 x 2.5</td>
+                            <td>Manually</td>
+                            <td>Monthly</td>
+                            <td><input type="date" name="due_date_1" required></td>
+                            <td><input type="date" name="done_date_1"></td>
+                            <td><input type="text" name="resp_1" required></td>
+                            <td>
+                                <select class="status-select" name="status_1" required>
+                                    <option value="">Select Status</option>
+                                    <option value="Not Started">Not Started</option>
+                                    <option value="Ongoing">Ongoing</option>
+                                    <option value="Completed">Completed</option>
+                                </select>
+                            </td>
+                            <td><input type="text" name="observation_1"></td>
+                            <td><input type="text" name="action_taken_1"></td>
+                        </tr>
+                        <tr data-frequency="yearly">
+                            <td>Sand Filter Media</td>
+                            <td>Manually</td>
+                            <td>Yearly</td>
+                            <td><input type="date" name="due_date_2" required></td>
+                            <td><input type="date" name="done_date_2"></td>
+                            <td><input type="text" name="resp_2" required></td>
+                            <td>
+                                <select class="status-select" name="status_2" required>
+                                    <option value="">Select Status</option>
+                                    <option value="Not Started">Not Started</option>
+                                    <option value="Ongoing">Ongoing</option>
+                                    <option value="Completed">Completed</option>
+                                </select>
+                            </td>
+                            <td><input type="text" name="observation_2"></td>
+                            <td><input type="text" name="action_taken_2"></td>
+                        </tr>
+                        <tr data-frequency="yearly">
+                            <td>ACF Media</td>
+                            <td>Manually</td>
+                            <td>Yearly</td>
+                            <td><input type="date" name="due_date_3" required></td>
+                            <td><input type="date" name="done_date_3" required></td>
+                            <td><input type="text" name="resp_3" required></td>
+                            <td>
+                                <select class="status-select" name="status_3" required>
+                                    <option value="">Select Status</option>
+                                    <option value="Not Started">Not Started</option>
+                                    <option value="Ongoing">Ongoing</option>
+                                    <option value="Completed">Completed</option>
+                                </select>
+                            </td>
+                            <td><input type="text" name="observation_3"></td>
+                            <td><input type="text" name="action_taken_3"></td>
+                        </tr>
+                        <tr data-frequency="half-yearly">
+                            <td>RO Membranes Clean QTY :06</td>
+                            <td>Manually</td>
+                            <td>Half Yearly</td>
+                            <td><input type="date" name="due_date_4" required></td>
+                            <td><input type="date" name="done_date_4"></td>
+                            <td><input type="text" name="resp_4" required></td>
+                            <td>
+                                <select class="status-select" name="status_4" required>
+                                    <option value="">Select Status</option>
+                                    <option value="Not Started">Not Started</option>
+                                    <option value="Ongoing">Ongoing</option>
+                                    <option value="Completed">Completed</option>
+                                </select>
+                            </td>
+                            <td><input type="text" name="observation_4"></td>
+                            <td><input type="text" name="action_taken_4"></td>
+                        </tr>
+                        <tr data-frequency="yearly">
+                            <td>RO Membranes 8040 QTY:04</td>
+                            <td>Manually</td>
+                            <td>Yearly</td>
+                            <td><input type="date" name="due_date_5" required></td>
+                            <td><input type="date" name="done_date_5"></td>
+                            <td><input type="text" name="resp_5" required></td>
+                            <td>
+                                <select class="status-select" name="status_5" required>
+                                    <option value="">Select Status</option>
+                                    <option value="Not Started">Not Started</option>
+                                    <option value="Ongoing">Ongoing</option>
+                                    <option value="Completed">Completed</option>
+                                </select>
+                            </td>
+                            <td><input type="text" name="observation_5"></td>
+                            <td><input type="text" name="action_taken_5"></td>
+                        </tr>
+                        <tr data-frequency="half-yearly">
+                            <td>Dozing Tank Cleaning QTY:04</td>
+                            <td>Manually</td>
+                            <td>Half Yearly</td>
+                            <td><input type="date" name="due_date_6" required></td>
+                            <td><input type="date" name="done_date_6"></td>
+                            <td><input type="text" name="resp_6" required></td>
+                            <td>
+                                <select class="status-select" name="status_6" required>
+                                    <option value="">Select Status</option>
+                                    <option value="Not Started">Not Started</option>
+                                    <option value="Ongoing">Ongoing</option>
+                                    <option value="Completed">Completed</option>
+                                </select>
+                            </td>
+                            <td><input type="text" name="observation_6"></td>
+                            <td><input type="text" name="action_taken_6"></td>
+                        </tr>
+                        <tr data-frequency="quarterly">
+                            <td>Preventive Maintenance All Transfer Pumps</td>
+                            <td>Manually</td>
+                            <td>Quarterly</td>
+                            <td><input type="date" name="due_date_7" required></td>
+                            <td><input type="date" name="done_date_7"></td>
+                            <td><input type="text" name="resp_7" required></td>
+                            <td>
+                                <select class="status-select" name="status_7" required>
+                                    <option value="">Select Status</option>
+                                    <option value="Not Started">Not Started</option>
+                                    <option value="Ongoing">Ongoing</option>
+                                    <option value="Completed">Completed</option>
+                                </select>
+                            </td>
+                            <td><input type="text" name="observation_7"></td>
+                            <td><input type="text" name="action_taken_7"></td>
+                        </tr>
+                        <tr data-frequency="quarterly">
+                            <td>Preventive maintenance Dozing Pumps QTY:03</td>
+                            <td>Manually</td>
+                            <td>Quarterly</td>
+                            <td><input type="date" name="due_date_8" required></td>
+                            <td><input type="date" name="done_date_8"></td>
+                            <td><input type="text" name="resp_8" required></td>
+                            <td>
+                                <select class="status-select" name="status_8" required>
+                                    <option value="">Select Status</option>
+                                    <option value="Not Started">Not Started</option>
+                                    <option value="Ongoing">Ongoing</option>
+                                    <option value="Completed">Completed</option>
+                                </select>
+                            </td>
+                            <td><input type="text" name="observation_8"></td>
+                            <td><input type="text" name="action_taken_8"></td>
+                        </tr>
+                        <tr data-frequency="quarterly">
+                            <td>Preventive maintenance- Cleaning flow meter</td>
+                            <td>Manually</td>
+                            <td>Quarterly</td>
+                            <td><input type="date" name="due_date_9" required></td>
+                            <td><input type="date" name="done_date_9"></td>
+                            <td><input type="text" name="resp_9" required></td>
+                            <td>
+                                <select class="status-select" name="status_9" required>
+                                    <option value="">Select Status</option>
+                                    <option value="Not Started">Not Started</option>
+                                    <option value="Ongoing">Ongoing</option>
+                                    <option value="Completed">Completed</option>
+                                </select>
+                            </td>
+                            <td><input type="text" name="observation_9"></td>
+                            <td><input type="text" name="action_taken_9"></td>
+                        </tr>
+                        <tr data-frequency="monthly">
+                            <td>Hydrochloric Acid QTY: 8kg</td>
+                            <td>Manually</td>
+                            <td>Monthly</td>
+                            <td><input type="date" name="due_date_10" required></td>
+                            <td><input type="date" name="done_date_10" required></td>
+                            <td><input type="text" name="resp_10" required></td>
+                            <td>
+                                <select class="status-select" name="status_10" required>
+                                    <option value="">Select Status</option>
+                                    <option value="Not Started">Not Started</option>
+                                    <option value="Ongoing">Ongoing</option>
+                                    <option value="Completed">Completed</option>
+                                </select>
+                            </td>
+                            <td><input type="text" name="observation_10"></td>
+                            <td><input type="text" name="action_taken_10"></td>
+                        </tr>
+                        <tr data-frequency="monthly">
+                            <td>Sodium Hypo Chlorite</td>
+                            <td>Manually</td>
+                            <td>Monthly</td>
+                            <td><input type="date" name="due_date_11" required></td>
+                            <td><input type="date" name="done_date_11" required></td>
+                            <td><input type="text" name="resp_11" required></td>
+                            <td>
+                                <select class="status-select" name="status_11" required>
+                                    <option value="">Select Status</option>
+                                    <option value="Not Started">Not Started</option>
+                                    <option value="Ongoing">Ongoing</option>
+                                    <option value="Completed">Completed</option>
+                                </select>
+                            </td>
+                            <td><input type="text" name="observation_11"></td>
+                            <td><input type="text" name="action_taken_11"></td>
+                        </tr>
+                        <tr data-frequency="monthly">
+                            <td>Caustic</td>
+                            <td>Manually</td>
+                            <td>Monthly</td>
+                            <td><input type="date" name="due_date_12" required></td>
+                            <td><input type="date" name="done_date_12"></td>
+                            <td><input type="text" name="resp_12" required></td>
+                            <td>
+                                <select class="status-select" name="status_12" required>
+                                    <option value="">Select Status</option>
+                                    <option value="Not Started">Not Started</option>
+                                    <option value="Ongoing">Ongoing</option>
+                                    <option value="Completed">Completed</option>
+                                </select>
+                            </td>
+                            <td><input type="text" name="observation_12"></td>
+                            <td><input type="text" name="action_taken_12"></td>
+                        </tr>
+                        <tr data-frequency="monthly">
+                            <td>Anti-Scalant</td>
+                            <td>Manually</td>
+                            <td>Monthly</td>
+                            <td><input type="date" name="due_date_13" required></td>
+                            <td><input type="date" name="done_date_13"></td>
+                            <td><input type="text" name="resp_13" required></td>
+                            <td>
+                                <select class="status-select" name="status_13" required>
+                                    <option value="">Select Status</option>
+                                    <option value="Not Started">Not Started</option>
+                                    <option value="Ongoing">Ongoing</option>
+                                    <option value="Completed">Completed</option>
+                                </select>
+                            </td>
+                            <td><input type="text" name="observation_13"></td>
+                            <td><input type="text" name="action_taken_13"></td>
+                        </tr>
+                        <tr data-frequency="monthly">
+                            <td>Treated Water Testing</td>
+                            <td>Manually</td>
+                            <td>Monthly</td>
+                            <td><input type="date" name="due_date_14" required></td>
+                            <td><input type="date" name="done_date_14"></td>
+                            <td><input type="text" name="resp_14" required></td>
+                            <td>
+                                <select class="status-select" name="status_14" required>
+                                    <option value="">Select Status</option>
+                                    <option value="Not Started">Not Started</option>
+                                    <option value="Ongoing">Ongoing</option>
+                                    <option value="Completed">Completed</option>
+                                </select>
+                            </td>
+                            <td><input type="text" name="observation_14"></td>
+                            <td><input type="text" name="action_taken_14"></td>
+                        </tr>
+                        <tr data-frequency="daily">
+                            <td>Check Inlet Water Flow Rate</td>
+                            <td>Line Meter</td>
+                            <td>Daily</td>
+                            <td><input type="date" name="due_date_15" required></td>
+                            <td><input type="date" name="done_date_15"></td>
+                            <td><input type="text" name="resp_15" required></td>
+                            <td>
+                                <select class="status-select" name="status_15" required>
+                                    <option value="">Select Status</option>
+                                    <option value="Not Started">Not Started</option>
+                                    <option value="Ongoing">Ongoing</option>
+                                    <option value="Completed">Completed</option>
+                                </select>
+                            </td>
+                            <td><input type="text" name="observation_15"></td>
+                            <td><input type="text" name="action_taken_15"></td>
+                        </tr>
+                        <tr data-frequency="daily">
+                            <td>Check Inlet Water Pressure</td>
+                            <td>Pressure gauge</td>
+                            <td>Daily</td>
+                            <td><input type="date" name="due_date_16" required></td>
+                            <td><input type="date" name="done_date_16"></td>
+                            <td><input type="text" name="resp_16" required></td>
+                            <td>
+                                <select class="status-select" name="status_16" required>
+                                    <option value="">Select Status</option>
+                                    <option value="Not Started">Not Started</option>
+                                    <option value="Ongoing">Ongoing</option>
+                                    <option value="Completed">Completed</option>
+                                </select>
+                            </td>
+                            <td><input type="text" name="observation_16"></td>
+                            <td><input type="text" name="action_taken_16"></td>
+                        </tr>
+                        <tr data-frequency="daily">
+                            <td>Check Raw Water Tank Level</td>
+                            <td>Manually</td>
+                            <td>Daily</td>
+                            <td><input type="date" name="due_date_17" required></td>
+                            <td><input type="date" name="done_date_17"></td>
+                            <td><input type="text" name="resp_17" required></td>
+                            <td>
+                                <select class="status-select" name="status_17" required>
+                                    <option value="">Select Status</option>
+                                    <option value="Not Started">Not Started</option>
+                                    <option value="Ongoing">Ongoing</option>
+                                    <option value="Completed">Completed</option>
+                                </select>
+                            </td>
+                            <td><input type="text" name="observation_17"></td>
+                            <td><input type="text" name="action_taken_17"></td>
+                        </tr>
+                        <tr data-frequency="monthly">
+                            <td>Clean Pre-Filter Housings</td>
+                            <td>Manually</td>
+                            <td>Monthly</td>
+                            <td><input type="date" name="due_date_18" required></td>
+                            <td><input type="date" name="done_date_18"></td>
+                            <td><input type="text" name="resp_18" required></td>
+                            <td>
+                                <select class="status-select" name="status_18" required>
+                                    <option value="">Select Status</option>
+                                    <option value="Not Started">Not Started</option>
+                                    <option value="Ongoing">Ongoing</option>
+                                    <option value="Completed">Completed</option>
+                                </select>
+                            </td>
+                            <td><input type="text" name="observation_18"></td>
+                            <td><input type="text" name="action_taken_18"></td>
+                        </tr>
+                        <tr data-frequency="daily">
+                            <td>Check Product Water TDS</td>
+                            <td>TDS Meter</td>
+                            <td>Daily</td>
+                            <td><input type="date" name="due_date_19" required></td>
+                            <td><input type="date" name="done_date_19"></td>
+                            <td><input type="text" name="resp_19" required></td>
+                            <td>
+                                <select class="status-select" name="status_19" required>
+                                    <option value="">Select Status</option>
+                                    <option value="Not Started">Not Started</option>
+                                    <option value="Ongoing">Ongoing</option>
+                                    <option value="Completed">Completed</option>
+                                </select>
+                            </td>
+                            <td><input type="text" name="observation_19"></td>
+                            <td><input type="text" name="action_taken_19"></td>
+                        </tr>
+                        <tr data-frequency="weekly">
+                            <td>Check Reject Water TDS</td>
+                            <td>TDS Meter</td>
+                            <td>Weekly</td>
+                            <td><input type="date" name="due_date_20" required></td>
+                            <td><input type="date" name="done_date_20"></td>
+                            <td><input type="text" name="resp_20" required></td>
+                            <td>
+                                <select class="status-select" name="status_20" required>
+                                    <option value="">Select Status</option>
+                                    <option value="Not Started">Not Started</option>
+                                    <option value="Ongoing">Ongoing</option>
+                                    <option value="Completed">Completed</option>
+                                </select>
+                            </td>
+                            <td><input type="text" name="observation_20"></td>
+                            <td><input type="text" name="action_taken_20"></td>
+                        </tr>
+                        <tr data-frequency="daily">
+                            <td>Inspect For Any Visible Leaks or Pipe Damage</td>
+                            <td>Manually</td>
+                            <td>Daily</td>
+                            <td><input type="date" name="due_date_21" required></td>
+                            <td><input type="date" name="done_date_21" required></td>
+                            <td><input type="text" name="resp_21"></td>
+                            <td>
+                                <select class="status-select" name="status_21" required>
+                                    <option value="">Select Status</option>
+                                    <option value="Not Started">Not Started</option>
+                                    <option value="Ongoing">Ongoing</option>
+                                    <option value="Completed">Completed</option>
+                                </select>
+                            </td>
+                            <td><input type="text" name="observation_21"></td>
+                            <td><input type="text" name="action_taken_21"></td>
+                        </tr>
+                        <tr data-frequency="monthly">
+                            <td>Calibrate Online Instruments (TDS, pH meter)</td>
+                            <td>Manually</td>
+                            <td>Monthly</td>
+                            <td><input type="date" name="due_date_22" required></td>
+                            <td><input type="date" name="done_date_22"></td>
+                            <td><input type="text" name="resp_22" required></td>
+                            <td>
+                                <select class="status-select" name="status_22" required>
+                                    <option value="">Select Status</option>
+                                    <option value="Not Started">Not Started</option>
+                                    <option value="Ongoing">Ongoing</option>
+                                    <option value="Completed">Completed</option>
+                                </select>
+                            </td>
+                            <td><input type="text" name="observation_22"></td>
+                            <td><input type="text" name="action_taken_22"></td>
+                        </tr>
+                        <tr data-frequency="per-shift">
+                            <td>Check Backwash Schedule Of Multimedia Filter</td>
+                            <td>Manually</td>
+                            <td>Per Shift</td>
+                            <td><input type="date" name="due_date_23" required></td>
+                            <td><input type="date" name="done_date_23"></td>
+                            <td><input type="text" name="resp_23" required></td>
+                            <td>
+                                <select class="status-select" name="status_23" required>
+                                    <option value="">Select Status</option>
+                                    <option value="Not Started">Not Started</option>
+                                    <option value="Ongoing">Ongoing</option>
+                                    <option value="Completed">Completed</option>
+                                </select>
+                            </td>
+                            <td><input type="text" name="observation_23"></td>
+                            <td><input type="text" name="action_taken_23"></td>
+                        </tr>
+                        <tr data-frequency="per-shift">
+                            <td>General Housekeeping & Area Cleanliness</td>
+                            <td>Manually</td>
+                            <td>Per Shift</td>
+                            <td><input type="date" name="due_date_24" required></td>
+                            <td><input type="date" name="done_date_24"></td>
+                            <td><input type="text" name="resp_24" required></td>
+                            <td>
+                                <select class="status-select" name="status_24" required>
+                                    <option value="">Select Status</option>
+                                    <option value="Not Started">Not Started</option>
+                                    <option value="Ongoing">Ongoing</option>
+                                    <option value="Completed">Completed</option>
+                                </select>
+                            </td>
+                            <td><input type="text" name="observation_24"></td>
+                            <td><input type="text" name="action_taken_24"></td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="calendar-view" class="calendar-view">
+                <!-- Calendar view content will be dynamically generated by JavaScript -->
+            </div>
+
+            <div class="equipment-abnormality task-container">
+                <h3>Equipment Abnormality Summary Report</h3>
+                <table id="abnormality-table">
+                    <thead>
+                        <tr>
+                            <th>Sr. No.</th>
+                            <th>Major Problem Reported</th>
+                            <th>Date</th>
+                            <th>Technician (Done By)</th>
+                            <th>A3 Report No.</th>
+                            <th>Action Taken</th>
+                            <th>Result After Repairing</th>
+                        </tr>
+                    </thead>
+                    <tbody id="abnormality-body">
+                        <tr id="abnormality-row-1">
+                            <td>1</td>
+                            <td><input type="text" name="problem_1"></td>
+                            <td><input type="date" name="problem_date_1"></td>
+                            <td><input type="text" name="technician_1"></td>
+                            <td><input type="text" name="report_no_1"></td>
+                            <td><input type="text" name="problem_action_1"></td>
+                            <td><input type="text" name="result_1"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button type="button" id="add-problem-btn" class="add-problem-btn">+ Add Problem</button>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit Checksheet</button>
+        </form>
+    </div>
+    <!-- JavaScript for interactivity and Excel export -->
+    <script src="script.js"></script>
+</body>
+
